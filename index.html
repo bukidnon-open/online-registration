@@ -714,7 +714,7 @@
         }
         .hero-visual img {
           object-fit: cover;
-          object-position: center 22%;
+          object-position: 24% center;
           transform: none;
         }
         .hero-visual::after {
@@ -753,6 +753,15 @@
           flex-direction: column;
           align-items: flex-start;
           padding: 50px 30px;
+        }
+      }
+
+      /* Small phones (iPhone 13 mini, SE, and similar ~375px-wide devices):
+         the 800px crop still loses too much of the group photo, so shift
+         the crop window right to keep the players in frame */
+      @media (max-width: 400px) {
+        .hero-visual img {
+          object-position: 24% center;
         }
       }
 
@@ -1169,7 +1178,10 @@
               <img src="assets/sponsors/IMG_9783.JPG" alt="Court in Session" />
             </div>
             <div class="sponsor sponsor--logo">
-              <img src="assets/sponsors/IMG_9784.JPG" alt="Cleo's Food Services" />
+              <img
+                src="assets/sponsors/IMG_9784.JPG"
+                alt="Cleo's Food Services"
+              />
             </div>
           </div>
         </div>
