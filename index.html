@@ -564,12 +564,35 @@
         text-align: center;
       }
 
+      .sponsor-tier {
+        margin-top: 48px;
+      }
+
+      .sponsor-tier:first-of-type {
+        margin-top: 38px;
+      }
+
+      .sponsor-tier-label {
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--olive);
+        opacity: 0.55;
+      }
+
+      .sponsor-tier--platinum .sponsor-tier-label {
+        opacity: 0.9;
+      }
+
       .sponsor-list {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         justify-content: center;
         gap: 15px 55px;
-        margin-top: 38px;
+        margin-top: 20px;
       }
 
       .sponsor {
@@ -577,6 +600,39 @@
         font-family: "Prata", Georgia, serif;
         font-size: 19px;
         letter-spacing: 0.02em;
+      }
+
+      .sponsor-tier--gold .sponsor {
+        font-size: 21px;
+      }
+
+      .sponsor-tier--silver .sponsor {
+        font-size: 17px;
+        opacity: 0.85;
+      }
+
+      .sponsor-tier--bronze .sponsor {
+        font-size: 15px;
+        opacity: 0.7;
+      }
+
+      .sponsor--logo img {
+        display: block;
+        height: 110px;
+        width: auto;
+        border-radius: 12px;
+      }
+
+      .sponsor-tier--gold .sponsor--logo img {
+        height: 84px;
+      }
+
+      .sponsor-tier--silver .sponsor--logo img {
+        height: 66px;
+      }
+
+      .sponsor-tier--bronze .sponsor--logo img {
+        height: 52px;
       }
 
       .sponsor span {
@@ -1103,12 +1159,42 @@
         <div class="section-label">With support from</div>
         <h2>Our sponsors.</h2>
 
-        <div class="sponsor-list">
-          <div class="sponsor">NORTHSTAR<span>SPORTS</span></div>
-          <div class="sponsor">COURT & CO.<span>ATHLETICS</span></div>
-          <div class="sponsor">RALLY<span>PICKLEBALL</span></div>
-          <div class="sponsor">THE CLUB<span>WELLNESS</span></div>
-          <div class="sponsor">ACE<span>PERFORMANCE</span></div>
+        <div class="sponsor-tier sponsor-tier--platinum">
+          <div class="sponsor-tier-label">Platinum sponsors</div>
+          <div class="sponsor-list">
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/speedup-logo.png" alt="Speedup" />
+            </div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/IMG_9783.JPG" alt="Court in Session" />
+            </div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/IMG_9784.JPG" alt="Cleo's Food Services" />
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor-tier sponsor-tier--gold">
+          <div class="sponsor-tier-label">Gold sponsors</div>
+          <div class="sponsor-list">
+            <div class="sponsor">NORTHSTAR<span>SPORTS</span></div>
+            <div class="sponsor">COURT & CO.<span>ATHLETICS</span></div>
+          </div>
+        </div>
+
+        <div class="sponsor-tier sponsor-tier--silver">
+          <div class="sponsor-tier-label">Silver sponsors</div>
+          <div class="sponsor-list">
+            <div class="sponsor">RALLY<span>PICKLEBALL</span></div>
+            <div class="sponsor">THE CLUB<span>WELLNESS</span></div>
+          </div>
+        </div>
+
+        <div class="sponsor-tier sponsor-tier--bronze">
+          <div class="sponsor-tier-label">Bronze sponsors</div>
+          <div class="sponsor-list">
+            <div class="sponsor">ACE<span>PERFORMANCE</span></div>
+          </div>
         </div>
       </section>
 

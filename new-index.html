@@ -711,7 +711,7 @@
         flex: none;
       }
 
-      /* ---------- sponsors: labelled marquee ---------- */
+      /* ---------- sponsors: tiered ---------- */
       .sponsors {
         background: var(--panel);
         display: flex;
@@ -736,18 +736,65 @@
       }
       .sponsor-track {
         display: flex;
+        align-items: center;
         width: max-content;
-        animation: marquee 30s linear infinite;
+        animation: marquee 34s linear infinite;
+      }
+      .sponsor-tier-tag {
+        display: flex;
+        align-items: center;
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        color: var(--dark);
+        white-space: nowrap;
+        padding: 0 22px 0 40px;
+      }
+      .sponsor-tier-tag::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-left: 10px;
+        border-radius: 50%;
+        background: var(--dark-mid);
       }
       .sponsor {
         padding: 0 40px;
         white-space: nowrap;
+      }
+      .sponsor--logo img {
+        display: block;
+        height: 96px;
+        width: auto;
+        border-radius: 12px;
+      }
+      .sponsor--logo.tier-gold img {
+        height: 74px;
+      }
+      .sponsor--logo.tier-silver img {
+        height: 58px;
+      }
+      .sponsor--logo.tier-bronze img {
+        height: 46px;
       }
       .sponsor strong {
         font-family: "Anton", sans-serif;
         text-transform: uppercase;
         font-size: 19px;
         color: var(--dark);
+      }
+      .sponsor.tier-gold strong {
+        font-size: 22px;
+      }
+      .sponsor.tier-silver strong {
+        font-size: 17px;
+        opacity: 0.85;
+      }
+      .sponsor.tier-bronze strong {
+        font-size: 14px;
+        opacity: 0.7;
       }
       .sponsor span {
         display: block;
@@ -1355,34 +1402,67 @@
         <div class="sponsors-label">With support from</div>
         <div class="sponsor-marquee">
           <div class="sponsor-track">
-            <div class="sponsor">
+            <div class="sponsor-tier-tag">Platinum</div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/speedup-logo.png" alt="Speedup" />
+            </div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/IMG_9783.JPG" alt="Court in Session" />
+            </div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/IMG_9784.JPG" alt="Cleo's Food Services" />
+            </div>
+
+            <div class="sponsor-tier-tag">Gold</div>
+            <div class="sponsor tier-gold">
               <strong>Northstar</strong><span>SPORTS</span>
             </div>
-            <div class="sponsor">
+            <div class="sponsor tier-gold">
               <strong>Court &amp; Co.</strong><span>ATHLETICS</span>
             </div>
-            <div class="sponsor">
+
+            <div class="sponsor-tier-tag">Silver</div>
+            <div class="sponsor tier-silver">
               <strong>Rally</strong><span>PICKLEBALL</span>
             </div>
-            <div class="sponsor">
+            <div class="sponsor tier-silver">
               <strong>The Club</strong><span>WELLNESS</span>
             </div>
-            <div class="sponsor">
+
+            <div class="sponsor-tier-tag">Bronze</div>
+            <div class="sponsor tier-bronze">
               <strong>Ace</strong><span>PERFORMANCE</span>
             </div>
-            <div class="sponsor">
+
+            <div class="sponsor-tier-tag">Platinum</div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/speedup-logo.png" alt="Speedup" />
+            </div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/IMG_9783.JPG" alt="Court in Session" />
+            </div>
+            <div class="sponsor sponsor--logo">
+              <img src="assets/sponsors/IMG_9784.JPG" alt="Cleo's Food Services" />
+            </div>
+
+            <div class="sponsor-tier-tag">Gold</div>
+            <div class="sponsor tier-gold">
               <strong>Northstar</strong><span>SPORTS</span>
             </div>
-            <div class="sponsor">
+            <div class="sponsor tier-gold">
               <strong>Court &amp; Co.</strong><span>ATHLETICS</span>
             </div>
-            <div class="sponsor">
+
+            <div class="sponsor-tier-tag">Silver</div>
+            <div class="sponsor tier-silver">
               <strong>Rally</strong><span>PICKLEBALL</span>
             </div>
-            <div class="sponsor">
+            <div class="sponsor tier-silver">
               <strong>The Club</strong><span>WELLNESS</span>
             </div>
-            <div class="sponsor">
+
+            <div class="sponsor-tier-tag">Bronze</div>
+            <div class="sponsor tier-bronze">
               <strong>Ace</strong><span>PERFORMANCE</span>
             </div>
           </div>
