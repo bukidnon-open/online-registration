@@ -76,19 +76,32 @@
         top: 0;
         right: 0;
         bottom: 0;
-        width: 60%;
+        width: 52%;
         z-index: 0;
+        overflow: hidden;
+        background: var(--green);
+        box-sizing: border-box;
+        /* a little breathing room above the photo */
+        padding-top: 48px;
+        /* angled left edge, like the other layout's hero photo */
+        clip-path: polygon(70px 0, 100% 0, 100% 100%, 0 100%);
       }
 
       .hero-visual img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 20%;
+        object-position: 50% 8%;
+        /* nudge right; scale keeps the left edge covered */
+        transform: translateX(5%) scale(1.11);
+        transform-origin: center top;
+        /* light desaturation so the photo settles into the palette */
+        filter: saturate(0.8) brightness(0.95) contrast(1.02);
         display: block;
       }
 
-      /* Blend the photo's left edge into the solid green panel */
+      /* Keep the headline edge readable where it overlaps the photo,
+         then clear quickly so the image reads as a clean panel */
       .hero-visual::after {
         content: "";
         position: absolute;
@@ -97,26 +110,27 @@
         background: linear-gradient(
           90deg,
           var(--green) 0%,
-          rgba(13, 43, 30, 0.85) 14%,
-          rgba(13, 43, 30, 0.3) 40%,
-          rgba(13, 43, 30, 0.16) 100%
+          rgba(13, 43, 30, 0.8) 12%,
+          rgba(13, 43, 30, 0.32) 34%,
+          rgba(13, 43, 30, 0) 56%
         );
       }
 
-      /* Subtle tennis/pickleball-court inspired line work */
+      /* Subtle tennis/pickleball-court inspired line work — pushed well
+         off to the right so its edges don't read as a seam over the photo */
       .hero::before,
       .hero::after {
         content: "";
         position: absolute;
         pointer-events: none;
-        border: 1px solid rgba(253, 251, 245, 0.09);
+        border: 1px solid rgba(253, 251, 245, 0.07);
         transform: rotate(-14deg);
       }
 
       .hero::before {
         width: 720px;
         height: 720px;
-        right: -190px;
+        right: -430px;
         top: -170px;
         border-radius: 50%;
       }
@@ -124,7 +138,7 @@
       .hero::after {
         width: 560px;
         height: 280px;
-        right: -30px;
+        right: -230px;
         bottom: -60px;
       }
 
@@ -410,7 +424,7 @@
         gap: 24px;
       }
 
-      .venue-photo {
+      .venue-carousel {
         position: relative;
         height: 260px;
         margin: 0;
@@ -418,22 +432,85 @@
         overflow: hidden;
       }
 
-      .venue-photo a {
-        display: block;
+      .venue-carousel-track {
+        display: flex;
         height: 100%;
-        text-decoration: none;
+        transition: transform 0.5s ease;
       }
 
-      .venue-photo img {
+      .venue-slide {
+        flex: 0 0 100%;
+        height: 100%;
+      }
+
+      .venue-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
-        transition: transform 0.4s ease;
       }
 
-      .venue-photo a:hover img {
-        transform: scale(1.04);
+      .venue-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid rgba(253, 251, 245, 0.5);
+        border-radius: 50%;
+        background: rgba(13, 43, 30, 0.35);
+        color: var(--paper);
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .venue-nav:hover {
+        background: rgba(13, 43, 30, 0.7);
+        border-color: var(--paper);
+      }
+
+      .venue-nav.prev {
+        left: 12px;
+      }
+
+      .venue-nav.next {
+        right: 12px;
+      }
+
+      .venue-dots {
+        position: absolute;
+        right: 16px;
+        bottom: 18px;
+        display: flex;
+        gap: 7px;
+        z-index: 2;
+      }
+
+      .venue-dots button {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(253, 251, 245, 0.45);
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .venue-dots button[aria-current="true"] {
+        background: var(--paper);
+        transform: scale(1.3);
       }
 
       .map-link {
@@ -447,7 +524,7 @@
         border-bottom-color: var(--green);
       }
 
-      .venue-photo::after {
+      .venue-carousel::after {
         content: "";
         position: absolute;
         inset: 0;
@@ -459,7 +536,7 @@
         );
       }
 
-      .venue-photo figcaption {
+      .venue-carousel figcaption {
         position: absolute;
         left: 20px;
         bottom: 16px;
@@ -468,7 +545,18 @@
         letter-spacing: 0.18em;
         font-size: 10px;
         font-weight: 700;
-        z-index: 1;
+        z-index: 2;
+      }
+
+      .venue-carousel figcaption a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(253, 251, 245, 0.4);
+        transition: border-color 0.2s ease;
+      }
+
+      .venue-carousel figcaption a:hover {
+        border-bottom-color: var(--paper);
       }
 
       .sponsors {
@@ -565,6 +653,13 @@
         }
         .hero-visual {
           width: 100%;
+          clip-path: none;
+          padding-top: 0;
+        }
+        .hero-visual img {
+          object-fit: cover;
+          object-position: center 22%;
+          transform: none;
         }
         .hero-visual::after {
           background: linear-gradient(
@@ -602,6 +697,47 @@
           flex-direction: column;
           align-items: flex-start;
           padding: 50px 30px;
+        }
+      }
+
+      /* Tablet / iPad: stack the hero — content on the green field, then
+         the photo as a full-width band with an angled top edge */
+      @media (min-width: 801px) and (max-width: 1100px) {
+        .hero {
+          flex-direction: column;
+          align-items: stretch;
+          min-height: 0;
+        }
+        .hero-inner {
+          order: 1;
+          width: min(100% - 88px, var(--max));
+          padding: 88px 0 60px;
+        }
+        .hero h1 {
+          font-size: clamp(56px, 8.5vw, 92px);
+        }
+        .hero-copy {
+          max-width: 620px;
+        }
+        .hero-visual {
+          order: 2;
+          position: static;
+          width: 100%;
+          height: clamp(340px, 46vw, 480px);
+          padding-top: 0;
+          clip-path: polygon(0 48px, 100% 0, 100% 100%, 0 100%);
+        }
+        .hero-visual img {
+          object-position: 50% 24%;
+          transform: none;
+          filter: saturate(0.86) brightness(0.98) contrast(1.02);
+        }
+        .hero-visual::after {
+          background: linear-gradient(
+            180deg,
+            var(--green) 0%,
+            rgba(13, 43, 30, 0) 22%
+          );
         }
       }
 
@@ -653,7 +789,7 @@
   <body>
     <header class="hero">
       <div class="hero-visual" aria-hidden="true">
-        <img src="./assets/bukidnon-open-hero.png" alt="" />
+        <img src="./assets/new-hero-image.png" alt="" />
       </div>
 
       <div class="hero-inner">
@@ -674,7 +810,20 @@
           </div>
           <div class="meta-item">
             <small>Where</small>
-            <strong>JakSons Sports Park</strong>
+            <strong
+              ><a
+                href="https://www.facebook.com/share/19kkN86smP/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener"
+                style="
+                  color: inherit;
+                  text-decoration: underline;
+                  text-underline-offset: 3px;
+                  text-decoration-thickness: 1px;
+                "
+                >JakSons Sports Park</a
+              ></strong
+            >
           </div>
           <div class="meta-item">
             <small>Location</small>
@@ -887,20 +1036,64 @@
               </p>
             </aside>
 
-            <figure class="venue-photo">
-              <a
-                href="https://maps.app.goo.gl/5xJWk9rTT35SSNdK8"
-                target="_blank"
-                rel="noopener"
+            <!--
+              Venue carousel — add more slides by copying a
+              <div class="venue-slide">…</div> block below and swapping the
+              image src. The arrows, dots, and autoplay adjust automatically.
+            -->
+            <figure
+              class="venue-carousel"
+              aria-roledescription="carousel"
+              aria-label="JakSons Sports Park photos"
+            >
+              <div class="venue-carousel-track" data-track>
+                <div class="venue-slide">
+                  <img
+                    src="./assets/3.png"
+                    alt="JakSons Sports Park — interior"
+                  />
+                </div>
+                <div class="venue-slide">
+                  <img
+                    src="./assets/2.png"
+                    alt="JakSons Sports Park — interior"
+                  />
+                </div>
+                <div class="venue-slide">
+                  <img
+                    src="./assets/5.jpg"
+                    alt="JakSons Sports Park — exterior"
+                  />
+                </div>
+              </div>
+
+              <button
+                class="venue-nav prev"
+                type="button"
+                aria-label="Previous photo"
+                data-prev
               >
-                <img
-                  src="./assets/jaksons-venue.jpg"
-                  alt="JakSons Sports Park, Malaybalay City, Bukidnon"
-                />
-                <figcaption>
-                  JakSons Sports Park · Zone 4, Brgy. Patpat
-                </figcaption>
-              </a>
+                &#8249;
+              </button>
+              <button
+                class="venue-nav next"
+                type="button"
+                aria-label="Next photo"
+                data-next
+              >
+                &#8250;
+              </button>
+
+              <div class="venue-dots" data-dots></div>
+
+              <figcaption>
+                <a
+                  href="https://maps.app.goo.gl/5xJWk9rTT35SSNdK8"
+                  target="_blank"
+                  rel="noopener"
+                  >JakSons Sports Park · Zone 4, Brgy. Patpat</a
+                >
+              </figcaption>
             </figure>
           </div>
         </div>
@@ -970,6 +1163,82 @@
           link.rel = "noopener noreferrer";
         });
       }
+
+      // ── Venue carousel ─────────────────────────────────────────────
+      // Slides, arrows, dots, and 5s autoplay (pauses on hover). Add or
+      // remove .venue-slide blocks in the markup and this adapts.
+      (function () {
+        var carousel = document.querySelector(".venue-carousel");
+        if (!carousel) return;
+
+        var track = carousel.querySelector("[data-track]");
+        var dotsWrap = carousel.querySelector("[data-dots]");
+        var prev = carousel.querySelector("[data-prev]");
+        var next = carousel.querySelector("[data-next]");
+        var count = track.children.length;
+        var index = 0;
+        var timer = null;
+
+        function go(to) {
+          index = (to + count) % count;
+          track.style.transform = "translateX(-" + index * 100 + "%)";
+          var dots = dotsWrap.children;
+          for (var i = 0; i < dots.length; i++) {
+            dots[i].setAttribute(
+              "aria-current",
+              i === index ? "true" : "false",
+            );
+          }
+        }
+
+        function start() {
+          if (count > 1) {
+            timer = setInterval(function () {
+              go(index + 1);
+            }, 5000);
+          }
+        }
+
+        function reset() {
+          clearInterval(timer);
+          start();
+        }
+
+        if (count <= 1) {
+          prev.style.display = "none";
+          next.style.display = "none";
+          return;
+        }
+
+        for (var i = 0; i < count; i++) {
+          (function (i) {
+            var dot = document.createElement("button");
+            dot.type = "button";
+            dot.setAttribute("aria-label", "Go to photo " + (i + 1));
+            dot.addEventListener("click", function () {
+              go(i);
+              reset();
+            });
+            dotsWrap.appendChild(dot);
+          })(i);
+        }
+
+        prev.addEventListener("click", function () {
+          go(index - 1);
+          reset();
+        });
+        next.addEventListener("click", function () {
+          go(index + 1);
+          reset();
+        });
+        carousel.addEventListener("mouseenter", function () {
+          clearInterval(timer);
+        });
+        carousel.addEventListener("mouseleave", start);
+
+        go(0);
+        start();
+      })();
     </script>
   </body>
 </html>
