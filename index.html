@@ -6,7 +6,7 @@
     <title>The Bukidnon Open 2026 — Pickleball Tournament</title>
     <meta
       name="description"
-      content="The Bukidnon Open 2026 — ₱321,000 prize pool, five skill divisions, two days. October 3–4, 2026 at JakSons Sports Park, Malaybalay City, Bukidnon."
+      content="The Bukidnon Open 2026 — ₱321,000 prize pool, six skill divisions, two days. October 3–4, 2026 at JakSons Sports Park, Malaybalay City, Bukidnon."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -274,7 +274,7 @@
 
       .categories {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         border-top: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
       }
@@ -284,8 +284,12 @@
         border-right: 1px solid var(--line);
       }
 
-      .category:last-child {
+      .category:nth-child(3n) {
         border-right: 0;
+      }
+
+      .category:nth-child(-n + 3) {
+        border-bottom: 1px solid var(--line);
       }
 
       .category-number {
@@ -691,18 +695,6 @@
         gap: 20px;
       }
 
-      @media (max-width: 1000px) {
-        .categories {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .category:nth-child(3n) {
-          border-right: 0;
-        }
-        .category:nth-child(-n + 3) {
-          border-bottom: 1px solid var(--line);
-        }
-      }
-
       @media (max-width: 800px) {
         .hero {
           min-height: 700px;
@@ -733,16 +725,13 @@
           grid-template-columns: repeat(2, 1fr);
         }
         .category {
+          border-right: 1px solid var(--line);
           border-bottom: 1px solid var(--line);
         }
         .category:nth-child(2n) {
           border-right: 0;
         }
-        .category:nth-child(3n) {
-          border-right: 1px solid var(--line);
-        }
-        .category:last-child {
-          border-right: 0;
+        .category:nth-last-child(-n + 2) {
           border-bottom: 0;
         }
         .details-grid {
@@ -909,10 +898,10 @@
             <div class="section-label">The divisions</div>
             <h2>Choose your division.</h2>
             <p class="intro">
-              Five skill divisions, each played in Men's, Women's, and Mixed.
-              Beginners and Novice Low are exclusive to Bukidnon players; Novice
-              High and up are open for all. Every podium finisher takes home
-              medals.
+              Six skill divisions, most played in Men's, Women's, and Mixed —
+              plus a 35+ All Genders division. Beginners and Novice Low are
+              exclusive to Bukidnon players; Novice High and up are open for
+              all. Every podium finisher takes home medals.
             </p>
           </div>
 
@@ -1036,6 +1025,30 @@
                 </div>
               </dl>
             </article>
+
+            <article class="category">
+              <div class="category-number">06</div>
+              <h3>35+ All Genders</h3>
+              <p>All Genders · Open for all</p>
+              <dl class="category-prizes">
+                <div>
+                  <dt>Champion</dt>
+                  <dd>₱15,000 + medals</dd>
+                </div>
+                <div>
+                  <dt>1st runner-up</dt>
+                  <dd>₱10,000 + medals</dd>
+                </div>
+                <div>
+                  <dt>2nd runner-up</dt>
+                  <dd>₱5,000 + medals</dd>
+                </div>
+                <div>
+                  <dt>3rd runner-up</dt>
+                  <dd>Medals</dd>
+                </div>
+              </dl>
+            </article>
           </div>
         </div>
       </section>
@@ -1068,7 +1081,7 @@
               <div class="detail">
                 <div class="detail-label">Divisions</div>
                 <div class="detail-value">
-                  5 skill divisions · Men's, Women's, Mixed
+                  6 skill divisions · Men's, Women's, Mixed, All Genders
                 </div>
               </div>
               <div class="detail">
@@ -1169,7 +1182,7 @@
         <h2>Our sponsors.</h2>
 
         <div class="sponsor-tier sponsor-tier--platinum">
-          <div class="sponsor-tier-label">Platinum sponsors</div>
+          <div class="sponsor-tier-label">Platinum Partner</div>
           <div class="sponsor-list">
             <div class="sponsor sponsor--logo">
               <img src="assets/sponsors/speedup-logo.png" alt="Speedup" />
@@ -1187,7 +1200,7 @@
         </div>
 
         <div class="sponsor-tier sponsor-tier--gold">
-          <div class="sponsor-tier-label">Gold sponsors</div>
+          <div class="sponsor-tier-label">Gold Partner</div>
           <div class="sponsor-list">
             <div class="sponsor">NORTHSTAR<span>SPORTS</span></div>
             <div class="sponsor">COURT & CO.<span>ATHLETICS</span></div>
@@ -1195,7 +1208,7 @@
         </div>
 
         <div class="sponsor-tier sponsor-tier--silver">
-          <div class="sponsor-tier-label">Silver sponsors</div>
+          <div class="sponsor-tier-label">Supporting Partner</div>
           <div class="sponsor-list">
             <div class="sponsor">RALLY<span>PICKLEBALL</span></div>
             <div class="sponsor">THE CLUB<span>WELLNESS</span></div>
@@ -1203,7 +1216,7 @@
         </div>
 
         <div class="sponsor-tier sponsor-tier--bronze">
-          <div class="sponsor-tier-label">Bronze sponsors</div>
+          <div class="sponsor-tier-label">Community Partner</div>
           <div class="sponsor-list">
             <div class="sponsor">ACE<span>PERFORMANCE</span></div>
           </div>
