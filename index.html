@@ -571,6 +571,7 @@
       .shirt-gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        align-items: start;
         gap: 18px;
         margin-top: 10px;
       }
@@ -586,17 +587,6 @@
         display: block;
         width: 100%;
         height: auto;
-        object-fit: cover;
-      }
-
-      .shirt-card--design1 img {
-        aspect-ratio: 1254 / 627;
-        object-position: 50% 0%;
-      }
-
-      .shirt-card--design2 img {
-        aspect-ratio: 1.35 / 1;
-        object-position: 50% 0%;
       }
 
       .shirt-card-caption {
